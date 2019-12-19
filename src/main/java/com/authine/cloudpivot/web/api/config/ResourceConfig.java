@@ -115,6 +115,7 @@ public class ResourceConfig extends ResourceServerConfigurerAdapter {
                     .antMatchers("/fonts/**").permitAll()
                     .antMatchers("/favicon.*").permitAll()
                     .antMatchers("/api/dingtalk/**").permitAll()
+                    .antMatchers("/meetingManage/**").permitAll()
                     //test
                     .antMatchers("/api/licenseExt/**").permitAll()
                     .antMatchers("/v1/dashboard/**").permitAll()

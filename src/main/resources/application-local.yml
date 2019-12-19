@@ -7,7 +7,7 @@ server:
 spring:
   #redis
   redis:
-    host: 120.79.187.180  #地址
+    host: 127.0.0.1  #地址
     database: 1         #
     password: H3yuncom  #密码
     port: 6379          #端口
@@ -57,7 +57,7 @@ cloudpivot:
       ftppath:      #ftp存放地址 如./ftp  .表示当前路径，不配置表示默认当前路径
   api:
     oauth:
-      enabled: false   # 是否开启权限校验
+      enabled: true   # 是否开启权限校验
       test:
         userid: f8cf3b3469a36a300169a36e88f101eb      # 模拟测试用户ID，不能用于生产环境
   bizlog:
