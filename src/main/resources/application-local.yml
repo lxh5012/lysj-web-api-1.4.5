@@ -66,3 +66,13 @@ cloudpivot:
     accessKeySecret: #Access Key Secret
     project:     #SLS项目名称
     logStore: webapi_log    #web-sso日志库
+# 自定义静态常量
+customize:
+  sso:
+    # 获取授权码url
+    oauthUrl: http://127.0.0.1:8080/api/sso/login?redirect_uri=http://127.0.0.1:8080/api/oauth/authorize?client_id=api&response_type=code&scope=read&redirect_uri=http://127.0.0.1/oauth
+    # 对接电话系统使用接口使用加密验证
+    publicKey: 30819F300D06092A864886F70D010101050003818D0030818902818100A0B417DA8977B98D00732E96F854FB2D1174E93D9D159BD0612FB9841191C8CD8F1DAF441A0BB34EAE039252501709199C065D1D60D934A1D6BDD4AABA5B988900914128C10C48A2099CA0009678C8EA858B3CD74441A6AFB4F55CF61E24F60714832B2F3F84385AA63E3C44A7CB6141E4ED4A7727A1255634E09F70405DC6F50203010001
+    # 需要跳转的页面地址
+    systemUrl: http://127.0.0.1
+    homeUrl: /workflow-center/my-unfinished-workitem?t=1

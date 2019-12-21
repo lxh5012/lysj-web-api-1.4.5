@@ -1,5 +1,7 @@
 package com.authine.cloudpivot.web.api.config;
 
+import com.authine.cloudpivot.ext.sso.SsoAuthenticationFilter;
+import com.authine.cloudpivot.ext.sso.SsoAuthenticationProvider;
 import com.authine.cloudpivot.web.sso.filter.DingTalkAuthenticationFilter;
 import com.authine.cloudpivot.web.sso.filter.DingTalkMobileAjaxAuthenticationFilter;
 import com.authine.cloudpivot.web.sso.filter.MobilePhoneAuthenticationFilter;
@@ -113,6 +115,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
         http.addFilterAt(loginAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterAt(ssoAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
         http.addFilterBefore(phoneAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
         http.addFilterBefore(dingTalkAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
         http.addFilterBefore(dingTalkMobileAjaxAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
@@ -151,6 +154,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         loginAuthenticationFilter.setAuthenticationSuccessHandler(defaultAuthenticationSuccessHandler);
         loginAuthenticationFilter.setAuthenticationFailureHandler(defaultAuthenticationFailureHandler);
         return loginAuthenticationFilter;
+    }
+    /**
+     * 单点登录对接
+     * @return
+     */
+    public SsoAuthenticationFilter ssoAuthenticationFilter() {
+        SsoAuthenticationFilter ssoAuthenticationFilter = new SsoAuthenticationFilter();
+
+        SsoAuthenticationProvider ssoAuthenticationProvider = new SsoAuthenticationProvider();
+        ssoAuthenticationProvider.setUserDetailsService(userDetailsService);
+        //认证后用户信息检查
+        UserDetailsCheckerImpl userDetailsChecker = new UserDetailsCheckerImpl();
+        ssoAuthenticationProvider.setPostAuthenticationChecks(userDetailsChecker);
+        ssoAuthenticationFilter.setAuthenticationManager(new ProviderManager(ImmutableList.of(ssoAuthenticationProvider)));
+
+        ssoAuthenticationFilter.setAuthenticationSuccessHandler(defaultAuthenticationSuccessHandler);
+        ssoAuthenticationFilter.setAuthenticationFailureHandler(defaultAuthenticationFailureHandler);
+        return ssoAuthenticationFilter;
     }
 
     /**
