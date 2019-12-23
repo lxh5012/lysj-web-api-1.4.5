@@ -1,12 +1,12 @@
 package com.authine.cloudpivot.ext.controller;
 
+import com.authine.cloudpivot.ext.reqDto.ReqMeetTime;
 import com.authine.cloudpivot.ext.service.MeetingManageService;
-import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,8 +22,10 @@ public class MeetingManageController {
     @Autowired
     MeetingManageService meetingManageService;
 
-    @PostMapping("/getTest")
-    public List<String> getTest() {
-        return meetingManageService.getTest();
+
+    // 获取空闲会议室
+    @PostMapping("/getFreeMeetRoom")
+    public List<String> getFreeMeetRoom(@RequestBody ReqMeetTime meetTime) {
+        return  meetingManageService.getFreeMeetRoom(meetTime);
     }
 }
