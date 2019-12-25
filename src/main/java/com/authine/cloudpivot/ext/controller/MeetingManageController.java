@@ -16,7 +16,7 @@ import java.util.List;
  * 会议管理控制类
  */
 @RestController
-@RequestMapping("/meetingManage")
+@RequestMapping("/api/meetingManage")
 public class MeetingManageController {
     private static final Logger log = LoggerFactory.getLogger(MeetingManageController.class);
     @Autowired

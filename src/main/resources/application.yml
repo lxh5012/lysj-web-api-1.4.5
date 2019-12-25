@@ -28,10 +28,14 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
-      driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://127.0.0.1:3306/lysj_oa_dev?serverTimezone=GMT%2B8
-      username: root
-      password: root
+#      driver-class-name: com.mysql.jdbc.Driver
+#      url: jdbc:mysql://127.0.0.1:3306/lysj_oa_dev?serverTimezone=GMT%2B8
+#      username: root
+#      password: root
+      driver-class-name: oracle.jdbc.driver.OracleDriver
+      url: jdbc:oracle:thin:@47.95.255.143:1521:zhswptdb
+      username: yunshu
+      password: yunshu2019
   main:
     allow-bean-definition-overriding: true
   profiles:

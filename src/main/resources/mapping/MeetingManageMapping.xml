@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.authine.cloudpivot.ext.mapper.MeetingManageMapper">
-    <select id="getUseMeetRoom" parameterType="java.lang.String" resultType="java.lang.String">
-		SELECT mentingRoom from i0wbn_meeting WHERE meetingEndTime &gt;#{startTime} and meetingStartTime &lt;#{endTime};
+    <select id="getUseMeetRoom"  resultType="java.lang.String">
+		SELECT 'mentingRoom' from ${tableName} WHERE 1=1
+		<if test="startTime !=null">
+			<![CDATA[and "meetingEndTime" >=  #{startTime,jdbcType=DATE} ]]>
+		</if>
+		<if test="endTime !=null">
+				<![CDATA[and "meetingStartTime" <= #{endTime,jdbcType=DATE} ]]>
+		</if>
 	</select>
 	<select id="getAllMeetRoom" parameterType="java.lang.String" resultType="java.lang.String">
-		select meetRoomName from ${tableName}
+		select a."meetRoomName" from ${tableName} a where a."meetRoomStatus" = '启用'
 	</select>
 </mapper>

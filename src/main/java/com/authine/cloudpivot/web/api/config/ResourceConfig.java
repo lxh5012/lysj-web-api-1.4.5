@@ -118,6 +118,7 @@ public class ResourceConfig extends ResourceServerConfigurerAdapter {
                     .antMatchers("/meetingManage/**").permitAll()
                     .antMatchers("/api/docking/**").permitAll()
                     .antMatchers("/api/sso/**").permitAll()
+                    .antMatchers("/api/meetingManage/**").permitAll()
                     //test
                     .antMatchers("/api/licenseExt/**").permitAll()
                     .antMatchers("/v1/dashboard/**").permitAll()
