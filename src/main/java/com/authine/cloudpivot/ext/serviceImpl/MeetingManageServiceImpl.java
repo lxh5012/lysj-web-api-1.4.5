@@ -36,8 +36,8 @@ public class MeetingManageServiceImpl implements MeetingManageService {
 
         }
 
-        String meetTableName = "I0WBN_MEETING";
-        String meetRoomTableName = "IJY9L_MEETINGROOMMANAGE";
+        String meetTableName = "I8HDT_MEETING";
+        String meetRoomTableName = "I8HDT_MEETINGROOMMANAGE";
 //        String meetTableName = dubboConfigService.getBizObjectFacade().getTableName("MEETING");
 //        String meetRoomTableName = dubboConfigService.getBizObjectFacade().getTableName("MEETINGROOMMANAGE");
         List<String> userMeetRoom = manageMapper.getUseMeetRoom(meetTableName, DateUtils.getStringToDate(startTime), DateUtils.getStringToDate(endTime));
